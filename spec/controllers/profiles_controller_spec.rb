@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe HomesController, type: :controller do
+RSpec.describe ProfilesController, type: :controller do
 
-  describe "GET #top" do
+  describe "GET #new" do
     it "returns http success" do
-      get :top
+      get :new
       expect(response).to have_http_status(:success)
     end
   end
