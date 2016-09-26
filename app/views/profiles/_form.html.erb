@@ -1,0 +1,16 @@
+<%= form_for @profile do |f| %>
+
+  <div class="field">
+    <%= f.label :fullname, "名前" %>
+    <%= f.text_field :fullname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ages, "年齢" %>
+    <%= f.number_field :ages %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録する" %>
+  </div>
+<% end %>
