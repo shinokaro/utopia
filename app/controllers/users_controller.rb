@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
- def mypage
+  before_action :authenticate_user!, only: %W(show edit destroy)
+  def mypage
 
- end
+  end
 
- def edit
+  def show
+    @user = User.find(params[:id])
+  end
 
- end
+  def edit
 
- def destroy
+  end
 
- end
+  def destroy
 
- private
+  end
 
- def profile_params
-   params.require(:profile).permit(:fullname, :ages)
- end
+
 end
