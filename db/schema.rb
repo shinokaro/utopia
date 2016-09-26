@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926081231) do
+ActiveRecord::Schema.define(version: 20160926121917) do
+
+  create_table "meetings", force: :cascade do |t|
+    t.integer  "promoter_id"
+    t.integer  "participant_id"
+    t.datetime "met_at"
+    t.integer  "promoter_rate"
+    t.integer  "participant_rate"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "meetings", ["participant_id"], name: "index_meetings_on_participant_id"
+  add_index "meetings", ["promoter_id"], name: "index_meetings_on_promoter_id"
 
   create_table "profiles", force: :cascade do |t|
     t.string   "fullname"
