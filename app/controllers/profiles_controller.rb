@@ -6,9 +6,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new profile_params.merge(
-      user_id: current_user.id
-    )
+    @profile = Profile.new profile_params.merge(user_id: current_user.id)
     if @profile.save
       redirect_to  user_path(@profile.user), notice: 'Profile was successfully created.'
     else
