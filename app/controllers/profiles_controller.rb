@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_profile, only: %w(edit update)
   def new
     @profile = Profile.new
   end
@@ -16,11 +17,9 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find(params[:id]) || current_user.profile
   end
 
   def update
-    @profile = Profile.find(params[:id]) || current_user.profile
     if @profile.update(profile_params)
       redirect_to  user_path(@profile.user), notice: 'Profile was successfully updated.'
     else
@@ -29,6 +28,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
 
 
   def profile_params
