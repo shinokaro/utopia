@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'users#mypage'
 
-  resources :users, except: %w(indexi new create) do
-    resources :profiles, only: %w(new create)
-  end
+  resources :users, except: %w(indexi new create)
+  resources :profiles, only: %w(new create)
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
