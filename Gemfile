@@ -45,6 +45,7 @@ group :development, :test do
   gem 'pry-stack_explorer' # スタックをたどれる
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem "shoulda-matchers"
 end
 
 group :development do
