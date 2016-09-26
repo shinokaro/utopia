@@ -31,6 +31,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+#
+# for bootstrap
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
 gem 'devise'
 gem 'devise-i18n'
 
