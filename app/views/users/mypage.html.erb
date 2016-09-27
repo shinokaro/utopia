@@ -1,1 +1,43 @@
-mypage
+<div class="container">
+  <% if current_user %>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>空いている人リスト</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>meet up!</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @free_mtgs.present? %>
+              <% @free_mtgs.each do |mtg| %>
+                <tr>
+                  <td><%= mtg.promoter.profile.try(:fullname) %></td>
+                  <td><%= mtg.promoter.try(:email) %></td>
+                  <td><%= button_to 'このユーザと会う', agree_users_path(user: {user_id: current_user.id, mtg_id: mtg.id}), class: "btn btn-primary" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <% if current_user.have_mtg? %>
+          <p>友達の参加をまっています。</p>
+          <%= button_to 'やっぱり暇じゃない', cancel_users_path, class: "btn btn-primary" %>
+        <% else %>
+          <%= button_to '暇ボタン', be_free_users_path, class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert-danger">ログインしてください</div>
+      </div>
+    </div>
+  <% end %>
+</div>

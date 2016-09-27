@@ -2,7 +2,15 @@ Rails.application.routes.draw do
   devise_for :users
   root 'users#mypage'
 
-  resources :users, except: %w(indexi new create)
+  resources :users, except: %w(index new create) do
+    collection do
+      post 'be_free'
+      post 'cancel'
+      post 'agree'
+      get 'review'
+      patch 'done_review'
+    end
+  end
   resources :profiles, only: %w(new create edit update)
 
   # The priority is based upon order of creation: first created -> highest priority.
