@@ -1,0 +1,27 @@
+レビューをしてください。
+<% if @review_mtg.promoter_id == current_user.id %>
+
+  <%= form_for @review_mtg,
+    url: done_review_users_path do |f| %>
+    <div class="field">
+      <%= f.label :participant_rate, "RATE" %>
+      <%= f.number_field :participant_rate %>
+      <%= f.hidden_field :id, :value => @review_mtg.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit "レビューする" %>
+    </div>
+  <% end %>
+<% elsif @review_mtg.participant_id == current_user.id %>
+  <%= form_for @review_mtg,
+    url: done_review_users_path do |f| %>
+    <div class="field">
+      <%= f.label :promoter_rate, "RATE" %>
+      <%= f.number_field :promoter_rate %>
+      <%= f.hidden_field :id, :value => @review_mtg.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit "レビューする" %>
+    </div>
+  <% end %>
+<% end %>

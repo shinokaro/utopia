@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :participations, class_name: "Meeting", foreign_key: :participant_id
   has_many :participants, through: :participations
+
+  def have_mtg?
+    self.promotions.where(participant_id: nil).present?
+  end
 end
