@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %W(show edit destroy be_free)
   before_action :get_free_mtgs, only: %w(mypage)
-  #before_action :need_review, only: %w(review done_review)
+  before_action :need_review, except: %w(review done_review)
 
   def mypage
   end
@@ -21,9 +21,9 @@ class UsersController < ApplicationController
   def be_free
     @mtg = current_user.promotions.build
     if @mtg.save
-      redirect_to root_url, notice: 'ok'
+      redirect_to root_url, notice: '空いているリストに入りました'
     else
-      redirect_to root_url
+      redirect_to root_url, alert: '失敗しました'
     end
   end
 
